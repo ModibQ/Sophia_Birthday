@@ -182,20 +182,45 @@
             object-fit: cover;
             border-radius: 10px;
         }
+
+        .game-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .game-image {
+            width: 800px;
+            height: 600px;
+            border-radius: 15px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 3px solid #ff6b9d;
+        }
+
+        @media (max-width: 850px) {
+            .game-image {
+                width: 90vw;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Page 1: Welcome -->
+        <!-- Page 1: intro -->
         <div class="page active" id="page1">
             <div class="balloons">🎈🎈🎈</div>
-            <h1>🌟 Happy Birthday! 🌟</h1>
+            <h1>🌟 Happy Birthday!!! 🌟</h1>
             <div class="cake">🎂</div>
             <p>Today is a very special day...</p>
             <button class="btn" onclick="startCelebration()">It's YOUR day! 🥳</button>
         </div>
 
-        <!-- Page 2: It's You! -->
+        <!-- Page 2: soph birthday -->
         <div class="page" id="page2">
             <h1>Happy Birthday, Sophia! 🥳</h1>
             <div class="image-container">
@@ -206,8 +231,56 @@
             <button class="btn" onclick="nextPage()">Let's celebrate! ✨</button>
         </div>
 
-        <!-- Page 3: MOMO Question -->
+        <!-- Page 3: lvl1 -->
         <div class="page" id="page3">
+            <h2>Find the Birthday Girl!</h2>
+            <p>Level 1: Can you find Soph in this picture? Click on her! (Easy)</p>
+            <div class="game-container">
+                <img src="game_img/lvl1.png" alt="Level 1 - Find Sophia" class="game-image" usemap="#level1-map">
+                <map name="level1-map">
+                    <area coords="179,35,246,106" shape="rect" onclick="foundSophia(1)" style="cursor: pointer;">
+                </map>
+            </div>
+            <div id="level1Success" style="display: none; margin: 20px 0;">
+                <h3 style="color: #4CAF50;">Sheesh that was pretty ez</h3>
+                <button class="btn" onclick="nextLevel(2)">Next Level</button>
+            </div>
+        </div>
+
+        <!-- Page 4: lvl2 -->
+        <div class="page" id="page4">
+            <h2>Find the Birthday Girl!</h2>
+            <p>Level 2: Where's Sophia hiding? (Medium)</p>
+            <div class="game-container">
+                <img src="game_img/lvl2.png" alt="Level 2 - Find Sophia" class="game-image" usemap="#level2-map">
+                <map name="level2-map">
+                    <area coords="624,299,666,346" shape="rect" onclick="foundSophia(2)" style="cursor: pointer; border: 2px solid red;">
+                </map>
+            </div>
+            <div id="level2Success" style="display: none; margin: 20px 0;">
+                <h3 style="color: #4CAF50;">Woooo! You found her!</h3>
+                <button class="btn" onclick="nextLevel(3)">Final Level!</button>
+            </div>
+        </div>
+
+        <!-- Page 5: lvl3 -->
+        <div class="page" id="page5">
+            <h2>Find the Birthday Girl!</h2>
+            <p>Level 3: Find the Monkey! Donde esta la bibliotecha? (Hard)</p>
+            <div class="game-container">
+                <img src="game_img/lvl3.png" alt="Level 3 - Find Sophia" class="game-image" usemap="#level3-map">
+                <map name="level3-map">
+                    <area coords="647,275,666,295" shape="rect" onclick="foundSophia(3)" style="cursor: pointer;">
+                </map>
+            </div>
+            <div id="level3Success" style="display: none; margin: 20px 0;">
+                <h3 style="color: #4CAF50;">I know damn well you had to put on your spectacles, Nerd!</h3>
+                <button class="btn" onclick="goToGoatQuestion()">Continue the Party! 🐐</button>
+            </div>
+        </div>
+
+        <!-- Page 6: MOMO goat -->
+        <div class="page" id="page6">
             <h2>🐐 Important Question! 🐐</h2>
             <p style="font-size: 1.5rem; margin: 30px 0;">Is MOMO the goat? 🤔</p>
             <div style="margin: 40px 0;">
@@ -216,8 +289,8 @@
             </div>
         </div>
 
-        <!-- Page 3b: Wrong Answer -->
-        <div class="page" id="page3b">
+        <!-- Page 6b: wrong -->
+        <div class="page" id="page6b">
             <h2>😱 WRONG ANSWER! 😱</h2>
             <div class="image-container">
                 <img src="img/Monkeymad.gif" alt="Mad reaction">
@@ -226,8 +299,8 @@
             <button class="btn" onclick="tryAgain()">Try Again! 🔄</button>
         </div>
 
-        <!-- Page 4: Correct Answer -->
-        <div class="page" id="page4">
+        <!-- Page 7: correct -->
+        <div class="page" id="page7">
             <h2>🎉 CORRECT! 🎉</h2>
             <p style="font-size: 1.4rem; color: #4CAF50; font-weight: bold; margin: 20px 0;">
                 YES! MOMO is indeed the GOAT! 🐐👑
@@ -238,8 +311,8 @@
             <button class="btn" onclick="plotTwist()">Continue! 🌟</button>
         </div>
 
-        <!-- Page 4b: Plot Twist -->
-        <div class="page" id="page4b">
+        <!-- Page 7b: sike -->
+        <div class="page" id="page7b">
             <h2>😂 SIKEEEE 😂</h2>
             <p style="font-size: 1.4rem; color: #ff6b9d; font-weight: bold; margin: 20px 0;">
                 Just kidding... Soph is the real GOAT! 🐐✨
@@ -251,8 +324,8 @@
             <button class="btn" onclick="goToMemories()">Let's see some memories! 🌟</button>
         </div>
 
-        <!-- Page 5: Memory Lane -->
-        <div class="page" id="page5">
+        <!-- Page 8: memories  -->
+        <div class="page" id="page8">
             <h2>🌈 Amazing Memories 🌈</h2>
             <p>Let's look back at some wonderful moments...</p>
             
@@ -281,14 +354,14 @@
             <button class="btn" onclick="nextPage()">Birthday wishes coming up! 🎁</button>
         </div>
 
-        <!-- Page 6: Birthday Wishes -->
-        <div class="page" id="page6">
+        <!-- Page 9: bday message -->
+        <div class="page" id="page9">
             <h2>🐈 Happy Birthday Message 🐈</h2>
             <div class="image-container" style="height: 250px;">
                 <img src="img/Fwend.JPG" alt="Friends photo">
             </div>
             <p style="font-size: 1.3rem; color: #ff6b9d; font-weight: bold;">
-                 Dear Unc,<br><br>
+                Dear Unc,<br><br>
                 Happy 23rd Birthday to the most amazing best friend! 🎉<br><br>
                 I know we only talk here and there, but I still consider you as one of my best friends! Thank you for being such an incredible friend - for all the laughs, adventures, late-night talks, and memories we've made together. You brought so much joy and sunshine into my life! 🥹<br><br>
                 I hope your 23rd year is absolutely perfect and filled with everything that makes you smile! 😇<br><br>
@@ -300,8 +373,8 @@
             <button class="btn" onclick="nextPage()">Time to celebrate! 🌟</button>
         </div>
 
-        <!-- Page 7: Final Celebration -->
-        <div class="page" id="page7">
+        <!-- Page 10: Final  -->
+        <div class="page" id="page10">
             <h1>🎊 HAPPY BIRTHDAY SOPHIA! 🎊</h1>
             <div class="cake bouncing" id="cakeContainer">🎂🕯️</div>
             <p style="font-size: 1.4rem; color: #ff6b9d;">
@@ -312,20 +385,22 @@
                 <p style="font-size: 1.2rem; color: #666;">
                     🌟 Hope all your birthday wishes come true! 🌟<br>
                     Have the most amazing day ever! 🤍<br><br>
-                    P.S. Don't worry I won't send you the gift I planned to send I know you are in a relationship now! (It was a Psyduck that we pulled & Nailong keychain)<br><br>Wish the best for you! 💜
+                    P.S. Don't worry I won't send you the gift I planned to send I know you are in a relationship now! (It was the Psyduck card that we pulled & the flower nailong keychain)<br><br>Wish the best for you! 💜
                 </p>
             </div>
         </div>
     </div>
 
+    <!-- Music shit -->
     <audio id="backgroundMusic" loop>
         <source src="song/Happy.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
+    <!-- helper funcs -->
     <script>
         let currentPage = 1;
-        const totalPages = 7;
+        const totalPages = 10;
 
         function startCelebration() {
             const audio = document.getElementById('backgroundMusic');
@@ -345,40 +420,68 @@
             }
         }
 
-        function correctAnswer() {
-            document.getElementById('page3').classList.remove('active');
+        function foundSophia(level) {
+            console.log(`Found Sophia on level ${level}!`); // Debug line
+            document.getElementById(`level${level}Success`).style.display = 'block';
+        }
+
+        function nextLevel(level) {
+            if (level === 2) {
+                // Going from Level 1 to Level 2
+                document.getElementById('page3').classList.remove('active');
+                setTimeout(() => {
+                    document.getElementById('page4').classList.add('active');
+                }, 200);
+            } else if (level === 3) {
+                // Going from Level 2 to Level 3
+                document.getElementById('page4').classList.remove('active');
+                setTimeout(() => {
+                    document.getElementById('page5').classList.add('active');
+                }, 200);
+            }
+        }
+
+        function goToGoatQuestion() {
+            document.getElementById('page5').classList.remove('active');
             setTimeout(() => {
-                document.getElementById('page4').classList.add('active');
+                document.getElementById('page6').classList.add('active');
+            }, 200);
+        }
+
+        function correctAnswer() {
+            document.getElementById('page6').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('page7').classList.add('active');
             }, 200);
         }
 
         function wrongAnswer() {
-            document.getElementById('page3').classList.remove('active');
+            document.getElementById('page6').classList.remove('active');
             setTimeout(() => {
-                document.getElementById('page3b').classList.add('active');
+                document.getElementById('page6b').classList.add('active');
             }, 200);
         }
 
         function tryAgain() {
-            document.getElementById('page3b').classList.remove('active');
+            document.getElementById('page6b').classList.remove('active');
             setTimeout(() => {
-                document.getElementById('page3').classList.add('active');
+                document.getElementById('page6').classList.add('active');
             }, 200);
         }
 
         function plotTwist() {
-            document.getElementById('page4').classList.remove('active');
+            document.getElementById('page7').classList.remove('active');
             setTimeout(() => {
-                document.getElementById('page4b').classList.add('active');
+                document.getElementById('page7b').classList.add('active');
             }, 200);
         }
 
         function goToMemories() {
-            document.getElementById('page4').classList.remove('active');
-            document.getElementById('page4b').classList.remove('active');
-            currentPage = 5;
+            document.getElementById('page7').classList.remove('active');
+            document.getElementById('page7b').classList.remove('active');
+            currentPage = 8;
             setTimeout(() => {
-                document.getElementById('page5').classList.add('active');
+                document.getElementById('page8').classList.add('active');
             }, 200);
         }
 
