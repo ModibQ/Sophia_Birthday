@@ -18,7 +18,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
         }
 
         .container {
@@ -36,7 +35,6 @@
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             border: 3px solid #ff6b9d;
-            overflow: hidden;
         }
 
         .page.active {
@@ -84,20 +82,6 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
-        }
-
-        .balloons {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0px); }
-            50% { transform: translateX(-50%) translateY(-20px); }
         }
 
         .confetti {
@@ -189,7 +173,6 @@
             justify-content: center;
             align-items: center;
             margin: 20px 0;
-            overflow: hidden;
         }
 
         .game-image {
@@ -207,14 +190,38 @@
                 height: auto;
             }
         }
+
+        .color-option, .flower-choice {
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .color-option:hover {
+            transform: translateY(-5px);
+            border-color: white !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .flower-choice:hover {
+            transform: translateY(-3px);
+            border-color: #ff6b9d !important;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .flower-choice.selected {
+            border-color: #4CAF50 !important;
+            background: #e8f5e8 !important;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Page 1: intro -->
         <div class="page active" id="page1">
-            <div class="balloons">🎈🎈🎈</div>
-            <h1>🌟 Happy Birthday!!! 🌟</h1>
+            <h1>Happy Birthday!!!</h1>
             <div class="cake">🎂</div>
             <p>Today is a very special day...</p>
             <button class="btn" onclick="startCelebration()">It's YOUR day! 🥳</button>
@@ -228,7 +235,7 @@
             </div>
             <p>Today is all about celebrating YOU!</p>
             <div class="countdown">🎉 IT'S YOUR BIRTHDAY TODAY! 🎉</div>
-            <button class="btn" onclick="nextPage()">Let's celebrate! ✨</button>
+            <button class="btn" onclick="nextPage()">Let's celebrate!</button>
         </div>
 
         <!-- Page 3: lvl1 -->
@@ -238,7 +245,7 @@
             <div class="game-container">
                 <img src="game_img/lvl1.png" alt="Level 1 - Find Sophia" class="game-image" usemap="#level1-map">
                 <map name="level1-map">
-                    <area coords="179,35,246,106" shape="rect" onclick="foundSophia(1)" style="cursor: pointer;">
+                    <area coords="179,35,246,106" shape="rect" onclick="foundSophia(1)">
                 </map>
             </div>
             <div id="level1Success" style="display: none; margin: 20px 0;">
@@ -254,7 +261,7 @@
             <div class="game-container">
                 <img src="game_img/lvl2.png" alt="Level 2 - Find Sophia" class="game-image" usemap="#level2-map">
                 <map name="level2-map">
-                    <area coords="624,299,666,346" shape="rect" onclick="foundSophia(2)" style="cursor: pointer; border: 2px solid red;">
+                    <area coords="624,299,666,346" shape="rect" onclick="foundSophia(2)">
                 </map>
             </div>
             <div id="level2Success" style="display: none; margin: 20px 0;">
@@ -270,12 +277,12 @@
             <div class="game-container">
                 <img src="game_img/lvl3.png" alt="Level 3 - Find Sophia" class="game-image" usemap="#level3-map">
                 <map name="level3-map">
-                    <area coords="647,275,666,295" shape="rect" onclick="foundSophia(3)" style="cursor: pointer;">
+                    <area coords="647,275,666,295" shape="rect" onclick="foundSophia(3)">
                 </map>
             </div>
             <div id="level3Success" style="display: none; margin: 20px 0;">
                 <h3 style="color: #4CAF50;">I know damn well you had to put on your spectacles, Nerd!</h3>
-                <button class="btn" onclick="goToGoatQuestion()">Continue the Party! 🐐</button>
+                <button class="btn" onclick="goToGoatQuestion()">Continue the Party!</button>
             </div>
         </div>
 
@@ -291,29 +298,29 @@
 
         <!-- Page 6b: wrong -->
         <div class="page" id="page6b">
-            <h2>😱 WRONG ANSWER! 😱</h2>
+            <h2>WRONG ANSWER!</h2>
             <div class="image-container">
                 <img src="img/Monkeymad.gif" alt="Mad reaction">
             </div>
             <p style="font-size: 1.3rem; color: #f44336; font-weight: bold;">Think again! 🤨</p>
-            <button class="btn" onclick="tryAgain()">Try Again! 🔄</button>
+            <button class="btn" onclick="tryAgain()">Try Again!</button>
         </div>
 
         <!-- Page 7: correct -->
         <div class="page" id="page7">
-            <h2>🎉 CORRECT! 🎉</h2>
+            <h2>CORRECT!</h2>
             <p style="font-size: 1.4rem; color: #4CAF50; font-weight: bold; margin: 20px 0;">
                 YES! MOMO is indeed the GOAT! 🐐👑
             </p>
             <div class="image-container">
                 <img src="img/Legoat.gif" alt="MOMO goat">
             </div>
-            <button class="btn" onclick="plotTwist()">Continue! 🌟</button>
+            <button class="btn" onclick="plotTwist()">Continue!</button>
         </div>
 
         <!-- Page 7b: sike -->
         <div class="page" id="page7b">
-            <h2>😂 SIKEEEE 😂</h2>
+            <h2>SIKEEEE</h2>
             <p style="font-size: 1.4rem; color: #ff6b9d; font-weight: bold; margin: 20px 0;">
                 Just kidding... Soph is the real GOAT! 🐐✨
             </p>
@@ -321,12 +328,12 @@
                 <img src="img/TowelHead.JPG" alt="Sophia goat">
             </div>
             <p style="font-size: 1.2rem; color: #666;">Happy Birthday to the REAL goat! 🎉</p>
-            <button class="btn" onclick="goToMemories()">Let's see some memories! 🌟</button>
+            <button class="btn" onclick="goToMemories()">Let's see some memories!</button>
         </div>
 
         <!-- Page 8: memories  -->
         <div class="page" id="page8">
-            <h2>🌈 Amazing Memories 🌈</h2>
+            <h2>Amazing Memories</h2>
             <p>Let's look back at some wonderful moments...</p>
             
             <div class="memory-grid">
@@ -351,7 +358,7 @@
                 </div>
             </div>
             
-            <button class="btn" onclick="nextPage()">Birthday wishes coming up! 🎁</button>
+            <button class="btn" onclick="nextPage()">Birthday wishes coming up!</button>
         </div>
 
         <!-- Page 9: bday message -->
@@ -370,12 +377,80 @@
                 Miss you!🤍<br><br>
                 Love, MOMO ✨
             </p>
-            <button class="btn" onclick="nextPage()">Time to celebrate! 🌟</button>
+            <button class="btn" onclick="nextPage()">Something special for you!</button>
         </div>
 
-        <!-- Page 10: Final  -->
+        <!-- Page 10: Color Selection -->
         <div class="page" id="page10">
-            <h1>🎊 HAPPY BIRTHDAY SOPHIA! 🎊</h1>
+            <h2>Choose a Color!</h2>
+            <p>Pick your favorite color!</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 40px auto; max-width: 600px;">
+                <div class="color-option" onclick="selectColor('p', 'Light Pink')" style="padding: 30px; background: linear-gradient(135deg, #ffc0cb, #ffb6c1); color: white; font-weight: bold; font-size: 1.2rem;">
+                    Light Pink
+                </div>
+                
+                <div class="color-option" onclick="selectColor('b', 'Beige')" style="padding: 30px; background: #F5CF6C; color: #8b4513; font-weight: bold; font-size: 1.2rem;">
+                    Beige
+                </div>
+                
+                <div class="color-option" onclick="selectColor('t', 'Light Tan')" style="padding: 30px; background: #E0CEC1; color: #8b4513; font-weight: bold; font-size: 1.2rem;">
+                    Light Tan
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 11: Flower Selection -->
+        <div class="page" id="page11">
+            <h2>Choose Your Flowers!</h2>
+            <p id="colorMessage">Select a Flower!</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin: 30px auto; max-width: 450px;">
+                <div class="flower-choice" onclick="toggleFlower('l', 'White Lilies')" style="padding: 25px; background: #f8f8ff;">
+                    <div style="font-size: 3rem;"></div>
+                    <p style="margin: 0; font-weight: bold; color: #666;">White Lilies</p>
+                </div>
+                
+                <div class="flower-choice" onclick="toggleFlower('t', 'Red Tulips')" style="padding: 25px; background: #ffb6c1;">
+                    <div style="font-size: 3rem;"></div>
+                    <p style="margin: 0; font-weight: bold; color: #666;">Red Tulips</p>
+                </div>
+                
+                <div class="flower-choice" onclick="toggleFlower('s', 'Sunflowers')" style="padding: 25px; background: #fff8dc;">
+                    <div style="font-size: 3rem;"></div>
+                    <p style="margin: 0; font-weight: bold; color: #666;">Sunflowers</p>
+                </div>
+                
+                <div class="flower-choice" onclick="toggleFlower('p', 'Orange Poppies')" style="padding: 25px; background: #ffdab9;">
+                    <div style="font-size: 3rem;"></div>
+                    <p style="margin: 0; font-weight: bold; color: #666;">Orange Poppies</p>
+                </div>
+            </div>
+            
+            <div id="flowerSelection" style="margin: 20px 0; min-height: 50px; background: #f9f9f9; border-radius: 15px; padding: 15px; border: 2px dashed #ff6b9d;">
+                <p style="color: #666; margin: 0;"><strong>Selected:</strong> <span id="selectionDisplay">Choose your flowers above!</span></p>
+            </div>
+            
+            <button class="btn" onclick="createCustomBouquet()" id="createCustomBtn" disabled style="background: #ccc;">Create!</button>
+        </div>
+
+        <!-- Page 12: Your Custom Bouquet -->
+        <div class="page" id="page12">
+            <h2>Your Beautiful Bouquet!</h2>
+            <p>Here's your personalized bouquet made just for you!</p>
+            
+            <div style="width: 100%; max-width: 500px; margin: 20px auto; border-radius: 15px; overflow: hidden; background: white; border: 2px solid #ff6b9d; padding: 10px;">
+                <img id="bouquetImage" src="" alt="Your custom bouquet" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+            </div>
+            
+            <p style="color: #ff6b9d; font-weight: bold; margin: 20px 0;">Made with love for your 23rd birthday! 🎉</p>
+            
+            <button class="btn" onclick="nextPage()">Time to celebrate!</button>
+        </div>
+
+        <!-- Page 13: Final  -->
+        <div class="page" id="page13">
+            <h1>HAPPY BIRTHDAY SOPHIA!</h1>
             <div class="cake bouncing" id="cakeContainer">🎂🕯️</div>
             <p style="font-size: 1.4rem; color: #ff6b9d;">
                 Make a wish and blow out the candles!
@@ -385,22 +460,39 @@
                 <p style="font-size: 1.2rem; color: #666;">
                     🌟 Hope all your birthday wishes come true! 🌟<br>
                     Have the most amazing day ever! 🤍<br><br>
-                    P.S. Don't worry I won't send you the gift I planned to send I know you are in a relationship now! (It was the Psyduck card that we pulled & the flower nailong keychain)<br><br>Wish the best for you! 💜
+                    Love you always and Wish the best for you! 💜
                 </p>
+                <button class="btn" onclick="showPresent()" id="presentBtn" style="margin-top: 20px;">Show Me What The Present Would Have Been!</button>
+                <div id="presentReveal" style="display: none; margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 15px; border: 2px solid #ff6b9d;">
+                    <h3 style="color: #ff6b9d; margin-bottom: 15px;">Your Present Would Have Been:</h3>
+                    <div style="display: flex; justify-content: center; margin: 20px 0;">
+                        <div style="width: 300px; height: 300px; background: white; border: 2px solid #ff6b9d; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 10px;">
+                            <img src="img/Gift.jpeg" alt="The Psyduck card and Nailong keychain" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-style: italic;">The Psyduck card we pulled together & Nailong wearing flower hat keychain!</p>
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Don't worry I won't send it to you - since you're in a relationship now, I didn't want to overstep any boundaries or make things uncomfortable... But if it is okay I can still send it!</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Music shit -->
     <audio id="backgroundMusic" loop>
         <source src="song/Happy.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
 
-    <!-- helper funcs -->
     <script>
         let currentPage = 1;
-        const totalPages = 10;
+        const totalPages = 13;
+        let selectedColor = '';
+        let selectedFlowers = [];
+        
+        const flowerCombos = {
+            l: 'white lilies',
+            t: 'red tulips', 
+            s: 'sunflowers',
+            p: 'orange poppies'
+        };
 
         function startCelebration() {
             const audio = document.getElementById('backgroundMusic');
@@ -421,59 +513,37 @@
         }
 
         function foundSophia(level) {
-            console.log(`Found Sophia on level ${level}!`); // Debug line
             document.getElementById(`level${level}Success`).style.display = 'block';
         }
 
         function nextLevel(level) {
-            if (level === 2) {
-                // Going from Level 1 to Level 2
-                document.getElementById('page3').classList.remove('active');
-                setTimeout(() => {
-                    document.getElementById('page4').classList.add('active');
-                }, 200);
-            } else if (level === 3) {
-                // Going from Level 2 to Level 3
-                document.getElementById('page4').classList.remove('active');
-                setTimeout(() => {
-                    document.getElementById('page5').classList.add('active');
-                }, 200);
-            }
+            const currentPageId = level === 2 ? 'page3' : 'page4';
+            const nextPageId = level === 2 ? 'page4' : 'page5';
+            
+            document.getElementById(currentPageId).classList.remove('active');
+            setTimeout(() => {
+                document.getElementById(nextPageId).classList.add('active');
+            }, 200);
         }
 
         function goToGoatQuestion() {
-            document.getElementById('page5').classList.remove('active');
-            setTimeout(() => {
-                document.getElementById('page6').classList.add('active');
-            }, 200);
+            changePage('page5', 'page6');
         }
 
         function correctAnswer() {
-            document.getElementById('page6').classList.remove('active');
-            setTimeout(() => {
-                document.getElementById('page7').classList.add('active');
-            }, 200);
+            changePage('page6', 'page7');
         }
 
         function wrongAnswer() {
-            document.getElementById('page6').classList.remove('active');
-            setTimeout(() => {
-                document.getElementById('page6b').classList.add('active');
-            }, 200);
+            changePage('page6', 'page6b');
         }
 
         function tryAgain() {
-            document.getElementById('page6b').classList.remove('active');
-            setTimeout(() => {
-                document.getElementById('page6').classList.add('active');
-            }, 200);
+            changePage('page6b', 'page6');
         }
 
         function plotTwist() {
-            document.getElementById('page7').classList.remove('active');
-            setTimeout(() => {
-                document.getElementById('page7b').classList.add('active');
-            }, 200);
+            changePage('page7', 'page7b');
         }
 
         function goToMemories() {
@@ -482,6 +552,56 @@
             currentPage = 8;
             setTimeout(() => {
                 document.getElementById('page8').classList.add('active');
+            }, 200);
+        }
+
+        function changePage(fromId, toId) {
+            document.getElementById(fromId).classList.remove('active');
+            setTimeout(() => {
+                document.getElementById(toId).classList.add('active');
+            }, 200);
+        }
+
+        function selectColor(colorCode, colorName) {
+            selectedColor = colorCode;
+            document.getElementById('colorMessage').textContent = `${colorName} selected! Now choose your flowers:`;
+            changePage('page10', 'page11');
+        }
+
+        function toggleFlower(flowerCode, flowerName) {
+            document.querySelectorAll('.flower-choice').forEach(el => el.classList.remove('selected'));
+            selectedFlowers = [flowerCode];
+            
+            event.target.closest('.flower-choice').classList.add('selected');
+            updateFlowerSelection();
+        }
+
+        function updateFlowerSelection() {
+            const selectionDisplay = document.getElementById('selectionDisplay');
+            const createCustomBtn = document.getElementById('createCustomBtn');
+            
+            if (selectedFlowers.length === 0) {
+                selectionDisplay.textContent = 'Choose 1 flower above!';
+                createCustomBtn.disabled = true;
+                createCustomBtn.style.background = '#ccc';
+            } else {
+                const flowerNames = selectedFlowers.map(code => flowerCombos[code]);
+                selectionDisplay.textContent = flowerNames.join(', ');
+                createCustomBtn.disabled = false;
+                createCustomBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+            }
+        }
+
+        function createCustomBouquet() {
+            const sortedFlowers = [...selectedFlowers].sort().join('');
+            const filename = `${selectedColor}${sortedFlowers}`;
+            
+            document.getElementById('bouquetImage').src = `flower_img/${filename}.png`;
+            
+            document.getElementById('page11').classList.remove('active');
+            currentPage = 12;
+            setTimeout(() => {
+                document.getElementById('page12').classList.add('active');
             }, 200);
         }
 
@@ -494,6 +614,11 @@
             
             document.getElementById('wishBtn').style.display = 'none';
             document.getElementById('finalMessage').style.display = 'block';
+        }
+
+        function showPresent() {
+            document.getElementById('presentBtn').style.display = 'none';
+            document.getElementById('presentReveal').style.display = 'block';
         }
 
         function createConfetti() {
